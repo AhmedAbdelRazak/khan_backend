@@ -27,6 +27,16 @@ const reservationSchema = new mongoose.Schema(
 			trim: true,
 		},
 
+		totalAmount: {
+			type: Number,
+			trim: true,
+		},
+
+		totalAmountBeforeDiscount: {
+			type: Number,
+			trim: true,
+		},
+
 		countryCallingCode: {
 			type: String,
 			trim: true,

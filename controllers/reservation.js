@@ -11,16 +11,17 @@ const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const BusinessName = "Khan Khadija Resort";
-const BusinessWebsite = "http://khan-khadija.com/";
-const AdminDashboard = "http://rchdigimp.com/admin/dashboard";
+const BusinessWebsite = "http://khankhadija.com";
+const AdminDashboard = "http://khankhadija.com";
 const fromEmail = "noreply@infinite-apps.com";
 const defaultEmail = "ahmed.abdelrazak@infinite-apps.com";
 // const phoneNumber1 = "+13372881836";
 const phoneNumber2 = "+19099914386";
-const phoneNumber3 = "+19099914386";
-const shopAddress = "123 main street, LA, CA";
+const phoneNumber3 = "+201211492941";
+const shopAddress =
+	"بترو بلاست للصناعات البلاستیكیة، طريق البتروكيماويات طريق الاسكندرية القاهرة الصحراوى";
 const shopLogo =
-	"https://res.cloudinary.com/infiniteapps/image/upload/v1635030800/PalaciosTowing/Logo_q5caoe.png";
+	"https://res.cloudinary.com/infiniteapps/image/upload/v1652478256/khankhadija/1652478256239.png";
 
 exports.reservationById = (req, res, next, id) => {
 	Reservation.findById(id).exec((err, order) => {
@@ -113,24 +114,42 @@ exports.create = (req, res) => {
         <title></title>
             
       </head>
-      <body style=margin-left:20px;margin-right:20px;margin-top:50px;background:#f2f2f2;border-radius:20px;padding:50px;>
+      <body style=margin-left:15px;margin-right:5px;margin-top:50px;background:#f2f2f2;border-radius:20px;padding:50px;>
        <div >
           Hi ${order.fullName},
           <br />
           <br />
             <div>Thank you for choosing <a href=${BusinessWebsite}> ${BusinessName}</a>.</div>
-            <h4> Our support team will respond within the next 24 hours.
-            </h4>
-             For urgent issues please check our <a href="${BusinessWebsite}> Contacting Details Here</a>.
+           
+             If you would like to change your ticket info, Please call ${phoneNumber3} and our support team will help you.
              <br />
              <br />
+			 <div>
+				Your Booking Info:
+				<br />
+				Phone: ${order.phoneNumber}
+				<br />
+				Scheduled Date: ${new Date(order.scheduledDate).toLocaleDateString()}
+				<br />
+				Tickets Count (Adults): ${order.quantity}
+				<br />
+				Tickets Count (Children): ${order.quantity_Children}
+				<br />
+				Bus Station Address ${order.chosenBusStation.address}
+				<br />
+				Chosen Package/Ticket: ${order.chosenService_Package}
+				<br />
+				Total Amount: ${order.totalAmount} L.E
+			<br />
+			<br />
+			<br />
+			 </div>
              Kind and Best Regards,  <br />
 						 ${BusinessName} support team <br />
 						 Contact Email: ${defaultEmail} <br />
 						 Phone#: ${phoneNumber3} <br />
-						 Landline#: ${phoneNumber2} <br />
 						 Address:  ${shopAddress}  <br />
-						 &nbsp;&nbsp; <img src=${shopLogo} alt=${BusinessName} style="height:100px;width:100px;"  />
+						 &nbsp;&nbsp; <img src=${shopLogo} alt=${BusinessName} style="height:80px;width:250px;"  />
 						 <br />
 						 <p>
 						 <strong>${BusinessName}</strong>
