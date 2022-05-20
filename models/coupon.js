@@ -10,7 +10,7 @@ const couponSchema = new mongoose.Schema(
 			uppercase: true,
 			required: "Nmae is required",
 			minlength: [6, "Too short"],
-			maxlength: [25, "Too long"],
+			maxlength: [35, "Too long"],
 		},
 		expiry: {
 			type: Date,

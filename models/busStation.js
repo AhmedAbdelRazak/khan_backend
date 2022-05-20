@@ -7,10 +7,9 @@ const busStationSchema = new mongoose.Schema(
 		address: {
 			type: String,
 			trim: true,
-			uppercase: true,
+			// uppercase: true,
 			required: "Nmae is required",
 			minlength: [6, "Too short"],
-			maxlength: [25, "Too long"],
 		},
 		times: {
 			type: Array,
