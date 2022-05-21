@@ -82,7 +82,7 @@ const reservationSchema = new mongoose.Schema(
 		status: {
 			type: String,
 			default: "Not Paid",
-			enum: ["Not Paid", "Paid", "Cancelled"], // enum means string objects
+			enum: ["Not Paid", "Partially Paid", "Paid", "Cancelled"], // enum means string objects
 		},
 		chosenCoupon: {
 			type: Object,

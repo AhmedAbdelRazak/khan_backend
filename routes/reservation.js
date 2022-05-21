@@ -11,12 +11,30 @@ const {
 	read,
 	reservationById,
 	listToBook,
+	getStatusValues,
+	updateOrderStatus,
 } = require("../controllers/reservation");
 
 router.post("/reservation-create", create);
 router.get("/all-reservations/:userId", requireSignin, isAuth, isAdmin, list);
 router.get("/all-reservations", listToBook);
 router.get("/order/:reservationId", read);
+
+router.get(
+	"/order/status-values/:userId",
+	requireSignin,
+	isAuth,
+	isAdmin,
+	getStatusValues,
+);
+
+router.put(
+	"/order/:reservationId/status/:userId",
+	requireSignin,
+	isAuth,
+	isAdmin,
+	updateOrderStatus,
+);
 
 router.param("userId", userById);
 router.param("reservationId", reservationById);

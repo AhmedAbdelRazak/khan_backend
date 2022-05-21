@@ -206,3 +206,86 @@ exports.listToBook = (req, res) => {
 			);
 		});
 };
+
+exports.getStatusValues = (req, res) => {
+	res.json(Reservation.schema.path("status").enumValues);
+};
+
+exports.updateOrderStatus = (req, res) => {
+	Reservation.updateOne(
+		{ _id: req.body.orderId },
+		{ $set: { status: req.body.status } },
+		(err, order) => {
+			if (err) {
+				return res.status(400).json({
+					error: errorHandler(err),
+				});
+			}
+
+			console.log(req.order, "order");
+
+			const emailData3 = {
+				to: req.order.scheduledByUserEmail,
+				from: "noreply@infinite-apps.com",
+				subject: `Khan Khadija | Reservation Update`,
+				html: `<div>Hi ${req.order.fullName}, </div>
+        <br />
+        <p>There is an update to your reservation.</p>
+        <br />
+              <h4>Reservation status: ${req.body.status}</h4>
+
+              Once we have another update, we will let you know.
+
+              <h4> <div>Thank you for choosing <a href=${BusinessWebsite}> ${BusinessName}</a>.</div><h4/>
+
+			  <br />
+			  <br />
+			   </div>
+			   Kind and Best Regards,  <br />
+						   ${BusinessName} support team <br />
+						   Contact Email: ${defaultEmail} <br />
+						   Phone#: ${phoneNumber3} <br />
+						   Address:  ${shopAddress}  <br />
+						   &nbsp;&nbsp; <img src=${shopLogo} alt=${BusinessName} style="height:80px;width:250px;"  />
+						   <br />
+						   <p>
+						   <strong>${BusinessName}</strong>
+							</p>
+							</div>
+
+        `,
+			};
+
+			sgMail.send(emailData3);
+			res.json(order);
+
+			const smsDataForAdmin = {
+				phone: `+19512591528`,
+				text: `Hi Admin - \nThere is an update in client's reservation (Khan Khadija). Please check your dashboard for more details and reach out to the client in case he/she doesn't \nCustomerPhone: +${req.order.scheduledByUserEmail}\nCustomerName: ${req.order.fullName} \n Dashboard: ${AdminDashboard}`,
+			};
+
+			const smsForAdmin = new SMS(smsDataForAdmin);
+			smsForAdmin.save((err, data) => {
+				if (err) {
+					return res.status(400).json({
+						err: "Error in sms creation",
+					});
+				}
+				console.log(data, "sms saved in the data base");
+			});
+
+			orderStatusSMS.messages
+				.create({
+					body: smsDataForAdmin.text,
+					from: "+19094884148",
+					to: smsDataForAdmin.phone,
+				})
+				.then((message) =>
+					console.log(
+						`Your message was successfully sent to ${smsDataForAdmin.phone}`,
+					),
+				)
+				.catch((err) => console.log(err));
+		},
+	);
+};
