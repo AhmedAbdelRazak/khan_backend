@@ -195,11 +195,15 @@ exports.listToBook = (req, res) => {
 			res.json(
 				ordersModified.map((i) => {
 					return {
+						_id: i._id,
 						scheduledDate: i.scheduledDate,
 						chosenPackage_Stock: i.chosenPackage_Stock,
 						quantity: i.quantity,
 						quantity_Children: i.quantity_Children,
 						status: i.status,
+						fullName: i.fullName,
+						scheduledByUserEmail: i.scheduledByUserEmail,
+						totalAmount: i.totalAmount,
 						createdAt: i.createdAt,
 					};
 				}),
@@ -286,6 +290,24 @@ exports.updateOrderStatus = (req, res) => {
 					),
 				)
 				.catch((err) => console.log(err));
+		},
+	);
+};
+
+exports.updateOrderScheduleDate = (req, res) => {
+	Reservation.updateOne(
+		{ _id: req.body.orderId },
+		{ $set: { date: req.body.scheduledDate } },
+		(err, order) => {
+			if (err) {
+				return res.status(400).json({
+					error: errorHandler(err),
+				});
+			}
+
+			console.log(req.order, "order");
+
+			res.json(order);
 		},
 	);
 };
