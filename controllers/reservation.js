@@ -314,8 +314,11 @@ exports.updateOrderScheduleDate = (req, res) => {
 
 exports.updateReservation = (req, res) => {
 	const order = req.order;
-	const orderDetails = req.body.orderDetails;
-	console.log(req.body.orderDetails);
+	// const orderDetails = req.body.orderDetails;
+
+	console.log(req.body.scheduledByUserEmail, "req.body");
+	console.log(req.order, "req.order");
+
 	order.scheduledByUserEmail = req.body.scheduledByUserEmail;
 	order.totalAmount = req.body.totalAmount;
 	order.totalAmountBeforeDiscount = req.body.totalAmountBeforeDiscount;
@@ -344,31 +347,5 @@ exports.updateReservation = (req, res) => {
 			});
 		}
 		res.json(data);
-		if (req.body.sendOrNot === true) {
-			const smsData = {
-				user: orderDetails.user._id,
-				phone: `${orderDetails.phone}`,
-				text: `Hi ${orderDetails.scheduledByUserName} - \nYour appointment with ${orderDetails.employees[0].employeeName} was updated, Please check your dashboard ${process.env.CLIENT_URL}/dasboard or call us ${process.env.CLIENT_URL}/contact. \nThank you for choosing ${BarbershopName}.`,
-			};
-			const sms = new SMS(smsData);
-			sms.save((err, data) => {
-				if (err) {
-					return res.status(400).json({
-						err: "Error in sms creation",
-					});
-				}
-				console.log(data, "sms saved in the data base");
-			});
-			orderStatusSMS.messages
-				.create({
-					body: smsData.text,
-					from: "+18038100432",
-					to: smsData.phone,
-				})
-				.then((message) =>
-					console.log(`Your message was successfully sent to ${smsData.phone}`),
-				)
-				.catch((err) => console.log(err));
-		}
 	});
 };

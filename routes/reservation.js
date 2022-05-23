@@ -75,7 +75,7 @@ router.put(
 );
 
 router.put(
-	"/reservation/:scheduleorderId/:userId",
+	"/reservation/:reservationId/:userId",
 	requireSignin,
 	isAuth,
 	updateReservation,
