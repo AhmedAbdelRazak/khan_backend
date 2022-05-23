@@ -3,7 +3,12 @@
 const express = require("express");
 const router = express.Router();
 const { userById } = require("../controllers/user");
-const { requireSignin, isAuth, isAdmin } = require("../controllers/auth");
+const {
+	requireSignin,
+	isAuth,
+	isAdmin,
+	isEmployee,
+} = require("../controllers/auth");
 
 const {
 	create,
@@ -14,10 +19,18 @@ const {
 	getStatusValues,
 	updateOrderStatus,
 	updateOrderScheduleDate,
+	updateReservation,
 } = require("../controllers/reservation");
 
 router.post("/reservation-create", create);
 router.get("/all-reservations/:userId", requireSignin, isAuth, isAdmin, list);
+router.get(
+	"/all-reservations-employee/:userId",
+	requireSignin,
+	isAuth,
+	isEmployee,
+	list,
+);
 router.get("/all-reservations", listToBook);
 router.get("/reservation/:reservationId", read);
 
@@ -26,6 +39,14 @@ router.get(
 	requireSignin,
 	isAuth,
 	isAdmin,
+	getStatusValues,
+);
+
+router.get(
+	"/order/status-values-employee/:userId",
+	requireSignin,
+	isAuth,
+	isEmployee,
 	getStatusValues,
 );
 
@@ -38,11 +59,26 @@ router.put(
 );
 
 router.put(
+	"/order/:reservationId/status-employee/:userId",
+	requireSignin,
+	isAuth,
+	isEmployee,
+	updateOrderStatus,
+);
+
+router.put(
 	"/order/:reservationId/date/:userId",
 	requireSignin,
 	isAuth,
 	isAdmin,
 	updateOrderScheduleDate,
+);
+
+router.put(
+	"/reservation/:scheduleorderId/:userId",
+	requireSignin,
+	isAuth,
+	updateReservation,
 );
 
 router.param("userId", userById);
