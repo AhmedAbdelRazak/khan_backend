@@ -125,76 +125,66 @@ exports.create = (req, res) => {
 				<title></title>
 			</head>
 			<style>
+			body {
+				background-color: #1e467d;
+				color: white;
+				margin: 20px 40px;
+				justify-content: center;
+				font-weight: bold;
+			}
+	
+			h5 {
+				position: relative;
+				font-weight: bold;
+				font-size: 1.2rem;
+			}
+	
+			.mainDiv {
+				position: relative;
+			}
+	
+			a {
+				color: #fcb63e;
+			}
+	
+			.logoWrapper {
+				/* border: 1px red solid; */
+				background-color: #fcb63e;
+				border-radius: 10px;
+				margin: auto 10px;
+			}
+	
+			.bookingInfoWrapper {
+				background-color: antiquewhite;
+				padding: 15px;
+				color: black;
+				border-radius: 10px;
+				margin: 10px auto;
+			}
+	
+			h4 {
+				color: #1e467d !important;
+				font-weight: bolder;
+			}
+	
+			@media (max-width: 1000px) {
 				body {
 					background-color: #1e467d;
 					color: white;
-					margin: 20px 40px;
-					justify-content: center;
-					background-image: url("https://res.cloudinary.com/infiniteapps/image/upload/v1652478256/khankhadija/1652478256239.png");
-					font-weight: bold;
+					margin-top: 3px;
+					margin-bottom: 3px;
+					margin-left: 10px !important;
 				}
-				body::before {
-					content: "";
-					position: absolute;
-					object-fit: cover;
-					top: 0px;
-					right: 0px;
-					bottom: 0px;
-					left: 0px;
-					background-color: rgba(0, 69, 138, 0.95);
-					overflow: hidden;
+				.imgStyling {
+					height: 100px !important;
+					width: 300px !important;
 				}
-		
-				h5 {
-					position: relative;
-					font-weight: bold;
-					font-size: 1.2rem;
-				}
-		
-				.mainDiv {
-					position: relative;
-				}
-		
-				a {
-					color: #fcb63e;
-				}
-		
-				.logoWrapper {
-					/* border: 1px red solid; */
-					background-color: #fcb63e;
-					border-radius: 10px;
-					margin: auto 10px;
-				}
-		
+	
 				.bookingInfoWrapper {
-					background-color: antiquewhite;
-					padding: 15px;
-					color: black;
-					border-radius: 10px;
-					margin: 10px auto;
+					padding: 5px;
 				}
-		
-				h4 {
-					color: #1e467d !important;
-					font-weight: bolder;
-				}
-		
-				@media (max-width: 1000px) {
-					body {
-						background-color: #1e467d;
-						color: white;
-						margin: 3px;
-					}
-					.imgStyling {
-						height: 100px !important;
-						width: 300px !important;
-					}
-		
-					.bookingInfoWrapper {
-						padding: 5px;
-					}
-				}
-			</style>
+			}
+		</style>
 			<body>
 				<div class="col-md-5 mx-auto mainDiv">
 					<div class="mx-auto text-center logoWrapper mb-3">
