@@ -4,7 +4,7 @@ const ContactUs = require("../models/contactusForm");
 const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-const BarbershopName = "khan Khadija Resort";
+const BusinessName = "khan Khadija Resort";
 const BarbershopWebsite = "http://khan-khadija.com/";
 const userDashboardLink = "http://khan-khadija.com/dashboard";
 const contactusPageLink = "http://khan-khadija.com/contact";
@@ -12,10 +12,11 @@ const supportEmail = "info@khan-khadija.com.com";
 const fromEmail = "noreply@infinite-apps.com";
 const defaultEmail = "ahmed.abdelrazak@infinite-apps.com";
 const phoneNumber1 = "+19099914386";
-// const phoneNumber2 = "(909) 243-5309";
-const shopAddress = "123 main street, LA, CA";
+const phoneNumber2 = "+201208560444";
+const shopAddress =
+	"العنوان: الكيلو 15 طريق اسكندرية - القاهرة الصحراوي - بعد المجمع البترولي - ناصية عبد القادر - امام شركة البتروكيماويات 25 دقيقة من كارفور.";
 const shopLogo =
-	"https://res.cloudinary.com/infiniteapps/image/upload/v1635030800/PalaciosTowing/Logo_q5caoe.png";
+	"https://res.cloudinary.com/infiniteapps/image/upload/v1652478256/khankhadija/1652478256239.png";
 
 exports.contactForm = (req, res) => {
 	const Form = new ContactUs(req.body);
@@ -34,7 +35,7 @@ exports.contactForm = (req, res) => {
 		const FormSubmittionEmail = {
 			to: form.email,
 			from: fromEmail,
-			subject: `${BarbershopName}- Confirmation`,
+			subject: `${BusinessName}- Confirmation`,
 			html: `
       <html>
       <head>
@@ -46,22 +47,21 @@ exports.contactForm = (req, res) => {
           Hi ${form.name},
           <br />
           <br />
-            <div>Thank you for contacting <a href=${BarbershopWebsite}> ${BarbershopName}</a>.</div>
+            <div>Thank you for contacting <a href=${BarbershopWebsite}> ${BusinessName}</a>.</div>
             <h4> Our support team will respond within the next 24 hours.
             </h4>
-             For urgent issues please check our <a href="${contactusPageLink}> Contacting Details Here</a>.
+             For urgent issues please please consider calling us on ${phoneNumber2}
              <br />
              <br />
              Kind and Best Regards,  <br />
-						 ${BarbershopName} support team <br />
+						 ${BusinessName} support team <br />
 						 Contact Email: ${supportEmail} <br />
-						 Phone#: ${phoneNumber1} <br />
 						 Landline#: ${phoneNumber2} <br />
 						 Address:  ${shopAddress}  <br />
-						 &nbsp;&nbsp; <img src=${shopLogo} alt=${BarbershopName} style="height:100px;width:100px;"  />
+						 &nbsp;&nbsp; <img src=${shopLogo} alt=${BusinessName} style="height:100px;width:100px;"  />
 						 <br />
 						 <p>
-						 <strong>${BarbershopName}</strong>
+						 <strong>${BusinessName}</strong>
 						  </p>
 						  </div>
     </body>
@@ -73,7 +73,7 @@ exports.contactForm = (req, res) => {
 		const InquiryFromCustomer = {
 			to: defaultEmail,
 			from: fromEmail,
-			subject: `${BarbershopName} - Inquiry From a customer - (Name: ${form.name})`,
+			subject: `${BusinessName} - Inquiry From a customer - (Name: ${form.name})`,
 			html: `
       <html>
       <head>
@@ -96,14 +96,14 @@ exports.contactForm = (req, res) => {
              <br />
              <br />
              Kind and Best Regards,  <br />
-						 ${BarbershopName} support team <br />
+						 ${BusinessName} support team <br />
 						 Contact Email: ${supportEmail} <br />
 						 Phone#: ${phoneNumber1} <br />
 						 Address:  ${shopAddress}  <br />
-						 &nbsp;&nbsp; <img src=${shopLogo} alt=${BarbershopName} style="height:100px;width:100px;"  />
+						 &nbsp;&nbsp; <img src=${shopLogo} alt=${BusinessName} style="height:100px;width:100px;"  />
 						 <br />
 						 <p>
-						 <strong>${BarbershopName}</strong>
+						 <strong>${BusinessName}</strong>
 						  </p>
 						  </div>
     </body>
