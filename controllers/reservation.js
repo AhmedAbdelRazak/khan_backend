@@ -128,19 +128,21 @@ exports.create = (req, res) => {
 			body {
 				background-color: #1e467d;
 				color: white;
-				margin: 20px 40px;
+				margin: 10px;
 				justify-content: center;
 				font-weight: bold;
+				padding: 10px;
+				border-radius: 3px;
+
 			}
 	
 			h5 {
-				position: relative;
 				font-weight: bold;
 				font-size: 1.2rem;
 			}
 	
 			.mainDiv {
-				position: relative;
+				padding: 20px;
 			}
 	
 			a {
@@ -171,8 +173,8 @@ exports.create = (req, res) => {
 				body {
 					background-color: #1e467d;
 					color: white;
-					margin-top: 3px;
-					margin: 20px 40px;
+					margin: 4px;
+					padding: 7px;
 				}
 				.imgStyling {
 					height: 100px !important;
