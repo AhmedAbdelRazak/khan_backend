@@ -156,9 +156,9 @@ exports.create = (req, res) => {
 	
 			.bookingInfoWrapper {
 				background-color: antiquewhite;
-				padding: 15px;
+				padding: 30px;
 				color: black;
-				border-radius: 10px;
+				border-radius: 15px;
 				margin: 10px auto;
 			}
 	
@@ -172,8 +172,7 @@ exports.create = (req, res) => {
 					background-color: #1e467d;
 					color: white;
 					margin-top: 3px;
-					margin-bottom: 3px;
-					margin-left: 10px !important;
+					margin: 20px 40px;
 				}
 				.imgStyling {
 					height: 100px !important;
@@ -181,7 +180,7 @@ exports.create = (req, res) => {
 				}
 	
 				.bookingInfoWrapper {
-					padding: 5px;
+					padding: 20px;
 				}
 			}
 		</style>
@@ -219,6 +218,13 @@ exports.create = (req, res) => {
 						Bus Station Time: ${order.chosenBusStationTime}
 						<br />
 						Chosen Package/Ticket: ${order.chosenService_Package}
+						<br />
+						Options Added: ${
+							Number(order.option1Count) +
+							Number(order.option2Count) +
+							Number(order.option3Count) +
+							Number(order.option4Count)
+						}
 						<br />
 						Total Amount: ${order.totalAmount} L.E
 						<br />
@@ -420,6 +426,10 @@ exports.updateReservation = (req, res) => {
 	order.chosenCoupon = req.body.chosenCoupon;
 	order.availableCoupon = req.body.availableCoupon;
 	order.bookingSource = req.body.bookingSource;
+	order.option1Count = req.body.option1Count;
+	order.option2Count = req.body.option2Count;
+	order.option3Count = req.body.option3Count;
+	order.option4Count = req.body.option4Count;
 
 	order.save((err, data) => {
 		if (err) {
