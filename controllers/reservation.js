@@ -223,6 +223,7 @@ exports.create = (req, res) => {
 						Total Amount: ${order.totalAmount} L.E
 						<br />
 					</div>
+					<br />
 					Kind and Best Regards, <br />
 					${BusinessName} support team <br />
 					Contact Email: ${defaultEmail} <br />

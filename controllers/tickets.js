@@ -61,6 +61,22 @@ exports.update = (req, res) => {
 
 	ticket.servicePrice_Children = req.body.servicePrice_Children;
 	ticket.servicePriceDiscount_Children = req.body.servicePriceDiscount_Children;
+	ticket.option1 = req.body.option1;
+	ticket.option2 = req.body.option2;
+	ticket.option3 = req.body.option3;
+	ticket.option4 = req.body.option4;
+	ticket.option1_Arabic = req.body.option1_Arabic;
+	ticket.option2_Arabic = req.body.option2_Arabic;
+	ticket.option3_Arabic = req.body.option3_Arabic;
+	ticket.option4_Arabic = req.body.option4_Arabic;
+	ticket.option1_Price = req.body.option1_Price;
+	ticket.option2_Price = req.body.option2_Price;
+	ticket.option3_Price = req.body.option3_Price;
+	ticket.option4_Price = req.body.option4_Price;
+	ticket.option1_Active = req.body.option1_Active;
+	ticket.option2_Active = req.body.option2_Active;
+	ticket.option3_Active = req.body.option3_Active;
+	ticket.option4_Active = req.body.option4_Active;
 
 	ticket.activeService = req.body.activeService;
 	ticket.thumbnail = req.body.thumbnail;

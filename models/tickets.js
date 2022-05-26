@@ -15,6 +15,75 @@ const ticketsSchema = new mongoose.Schema(
 			trim: true,
 		},
 
+		option1: {
+			type: String,
+			trim: true,
+		},
+		option2: {
+			type: String,
+			trim: true,
+		},
+		option3: {
+			type: String,
+			trim: true,
+		},
+		option4: {
+			type: String,
+			trim: true,
+		},
+		option1_Arabic: {
+			type: String,
+			trim: true,
+		},
+		option2_Arabic: {
+			type: String,
+			trim: true,
+		},
+		option3_Arabic: {
+			type: String,
+			trim: true,
+		},
+		option4_Arabic: {
+			type: String,
+			trim: true,
+		},
+		option1_Price: {
+			type: Number,
+			trim: true,
+		},
+		option2_Price: {
+			type: Number,
+			trim: true,
+		},
+		option3_Price: {
+			type: Number,
+			trim: true,
+		},
+		option4_Price: {
+			type: Number,
+			trim: true,
+		},
+		option1_Active: {
+			type: Boolean,
+			trim: true,
+			default: false,
+		},
+		option2_Active: {
+			type: Boolean,
+			trim: true,
+			default: false,
+		},
+		option3_Active: {
+			type: Boolean,
+			trim: true,
+			default: false,
+		},
+		option4_Active: {
+			type: Boolean,
+			trim: true,
+			default: false,
+		},
+
 		serviceDescription: {
 			type: String,
 			trim: true,

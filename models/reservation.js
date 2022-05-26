@@ -106,6 +106,23 @@ const reservationSchema = new mongoose.Schema(
 			type: String,
 			default: "Online",
 		},
+
+		option1Count: {
+			type: Number,
+			default: 0,
+		},
+		option2Count: {
+			type: Number,
+			default: 0,
+		},
+		option3Count: {
+			type: Number,
+			default: 0,
+		},
+		option4Count: {
+			type: Number,
+			default: 0,
+		},
 	},
 	{ timestamps: true },
 );
