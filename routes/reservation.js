@@ -20,6 +20,7 @@ const {
 	updateOrderStatus,
 	updateOrderScheduleDate,
 	updateReservation,
+	remove,
 } = require("../controllers/reservation");
 
 router.post("/reservation-create", create);
@@ -79,6 +80,14 @@ router.put(
 	requireSignin,
 	isAuth,
 	updateReservation,
+);
+
+router.delete(
+	"/reservation/:reservationId/:userId",
+	requireSignin,
+	isAuth,
+	isAdmin,
+	remove,
 );
 
 router.param("userId", userById);

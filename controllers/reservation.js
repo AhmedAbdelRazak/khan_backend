@@ -593,3 +593,16 @@ exports.updateReservation = (req, res) => {
 		res.json(data);
 	});
 };
+
+exports.remove = (req, res) => {
+	const order = req.order;
+
+	order.remove((err, data) => {
+		if (err) {
+			return res.status(400).json({
+				err: "error while removing",
+			});
+		}
+		res.json({ message: "Order deleted" });
+	});
+};
