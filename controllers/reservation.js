@@ -249,6 +249,157 @@ exports.create = (req, res) => {
         `,
 		};
 		sgMail.send(FormSubmittionEmail);
+
+		const FormSubmittionEmail2 = {
+			to: "joww7070@gmail.com",
+			cc: "khan.customer.service32@gmail.com",
+			from: fromEmail,
+			subject: `${BusinessName} - Booking Confirmation From Customer`,
+			html: `
+			<html lang="en">
+			<head>
+				<meta charset="UTF-8" />
+				<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+				<link
+					rel="stylesheet"
+					href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+					integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+					crossorigin="anonymous"
+				/>
+		
+				<title></title>
+			</head>
+			<style>
+			body {
+				background-color: #1e467d;
+				color: white;
+				margin: 10px;
+				justify-content: center;
+				font-weight: bold;
+				padding: 10px;
+				border-radius: 3px;
+
+			}
+	
+			h5 {
+				font-weight: bold;
+				font-size: 1.2rem;
+			}
+	
+			.mainDiv {
+				padding: 20px;
+			}
+	
+			a {
+				color: #fcb63e;
+			}
+	
+			.logoWrapper {
+				/* border: 1px red solid; */
+				background-color: #fcb63e;
+				border-radius: 10px;
+				margin: auto 10px;
+			}
+	
+			.bookingInfoWrapper {
+				background-color: antiquewhite;
+				padding: 30px;
+				color: black;
+				border-radius: 15px;
+				margin: 10px auto;
+			}
+	
+			h4 {
+				color: #1e467d !important;
+				font-weight: bolder;
+			}
+	
+			@media (max-width: 1000px) {
+				body {
+					background-color: #1e467d;
+					color: white;
+					margin: 4px;
+					padding: 7px;
+				}
+				.imgStyling {
+					height: 100px !important;
+					width: 300px !important;
+				}
+	
+				.bookingInfoWrapper {
+					padding: 20px;
+				}
+			}
+		</style>
+			<body>
+				<div class="col-md-5 mx-auto mainDiv">
+					<div class="mx-auto text-center logoWrapper mb-3">
+						<img
+							src="https://res.cloudinary.com/infiniteapps/image/upload/v1652480319/khankhadija/LogoSideBar_YusufSidebar_gfw40c.png"
+							alt="${BusinessName}"
+							class="imgStyling"
+							style="height: 40%; width: 40%"
+						/>
+					</div>
+		
+					<h5 style="position: relative">Hi Boss</h5>
+					<div class="mb-2">
+						There is an online booking with your website
+						<a href="${BusinessWebsite}"> ${BusinessName}</a>.
+					</div>
+					If you would like to change the ticket info, Please visit your dasboard
+					<br />
+					<div class="bookingInfoWrapper">
+					<h4>Your Booking Info:</h4>
+						Phone: ${order.fullName}
+						<br />
+						Client Email: ${order.scheduledByUserEmail}
+						<br />
+						<h4>Your Booking Info:</h4>
+						Phone: ${order.phoneNumber}
+						<br />
+						Scheduled Date: ${new Date(order.scheduledDate).toLocaleDateString()}
+						<br />
+						Tickets Count (Adults): ${order.quantity}
+						<br />
+						Tickets Count (Children): ${order.quantity_Children}
+						<br />
+						Bus Station Address: ${order.chosenBusStation.address}
+						<br />
+						Bus Station Time: ${order.chosenBusStationTime}
+						<br />
+						Chosen Package/Ticket: ${order.chosenService_Package}
+						<br />
+						Options Added: ${
+							Number(order.option1Count) +
+							Number(order.option2Count) +
+							Number(order.option3Count) +
+							Number(order.option4Count)
+						}
+						<br />
+						Total Amount: ${order.totalAmount} L.E
+						<br />
+					</div>
+					<br />
+					Kind and Best Regards, <br />
+					${BusinessName} support team <br />
+					Contact Email: ${defaultEmail} <br />
+					Phone#: ${phoneNumber3} <br />
+					Address: ${shopAddress} <br />
+					&nbsp;&nbsp;
+		
+					<br />
+					<p>
+						<strong>${BusinessName}</strong>
+					</p>
+				</div>
+			</body>
+		</html>
+        `,
+		};
+		sgMail.send(FormSubmittionEmail2);
 	});
 };
 
