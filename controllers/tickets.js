@@ -77,6 +77,8 @@ exports.update = (req, res) => {
 	ticket.option2_Active = req.body.option2_Active;
 	ticket.option3_Active = req.body.option3_Active;
 	ticket.option4_Active = req.body.option4_Active;
+	ticket.displayBusStationOption = req.body.displayBusStationOption;
+	ticket.displayOcassion = req.body.displayOcassion;
 
 	ticket.activeService = req.body.activeService;
 	ticket.thumbnail = req.body.thumbnail;

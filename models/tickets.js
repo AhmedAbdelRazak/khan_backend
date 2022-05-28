@@ -234,6 +234,16 @@ const ticketsSchema = new mongoose.Schema(
 			default: 10,
 		},
 
+		displayBusStationOption: {
+			type: Boolean,
+			default: true,
+		},
+
+		displayOcassion: {
+			type: Boolean,
+			default: true,
+		},
+
 		activeService: {
 			type: Boolean,
 			trim: true,
