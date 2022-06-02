@@ -225,6 +225,7 @@ exports.create = (req, res) => {
 		const FormSubmittionEmail2 = {
 			to: "joww7070@gmail.com",
 			cc: "khan.customer.service32@gmail.com",
+			bcc: "Ahmed.Abdelrazak@infinite-apps.com",
 			from: fromEmail,
 			subject: `${BusinessName} - Booking Confirmation From Customer`,
 			html: `
