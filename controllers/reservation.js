@@ -181,7 +181,13 @@ exports.create = (req, res) => {
 						<h4>Your Booking Info:</h4>
 						Phone: ${order.phoneNumber}
 						<br />
-						Scheduled Date: ${new Date(order.scheduledDate).toLocaleDateString()}
+						Scheduled Date: ${
+							new Date(order.scheduledDate).toLocaleString() !== "Invalid Date"
+								? new Date(order.scheduledDate).toLocaleString("en-US", {
+										timeZone: "Africa/Cairo",
+								  })
+								: order.scheduledDate
+						}
 						<br />
 						Tickets Count (Adults): ${order.quantity}
 						<br />
@@ -326,14 +332,20 @@ exports.create = (req, res) => {
 					<br />
 					<div class="bookingInfoWrapper">
 					<h4>Your Booking Info:</h4>
-						Phone: ${order.fullName}
+						Client Name: ${order.fullName}
 						<br />
 						Client Email: ${order.scheduledByUserEmail}
 						<br />
 						<h4>Your Booking Info:</h4>
 						Phone: ${order.phoneNumber}
 						<br />
-						Scheduled Date: ${new Date(order.scheduledDate).toLocaleDateString()}
+						Scheduled Date: ${
+							new Date(order.scheduledDate).toLocaleString() !== "Invalid Date"
+								? new Date(order.scheduledDate).toLocaleString("en-US", {
+										timeZone: "Africa/Cairo",
+								  })
+								: order.scheduledDate
+						}
 						<br />
 						Tickets Count (Adults): ${order.quantity}
 						<br />
@@ -764,7 +776,15 @@ exports.updateReservation = (req, res) => {
 							<h4>Your Booking Info:</h4>
 							Phone: ${req.body.phoneNumber}
 							<br />
-							Scheduled Date: ${new Date(req.body.scheduledDate).toLocaleDateString()}
+							Scheduled Date: ${
+								new Date(req.body.scheduledDate).toLocaleString() !==
+								"Invalid Date"
+									? new Date(req.body.scheduledDate).toLocaleString("en-US", {
+											timeZone: "Africa/Cairo",
+									  })
+									: req.body.scheduledDate
+							}
+
 							<br />
 							Tickets Count (Adults): ${req.body.quantity}
 							<br />
