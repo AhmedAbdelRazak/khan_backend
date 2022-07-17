@@ -21,6 +21,7 @@ const {
 	updateOrderScheduleDate,
 	updateReservation,
 	remove,
+	createReservationDataEntry,
 } = require("../controllers/reservation");
 
 router.post("/reservation-create", create);
@@ -89,6 +90,8 @@ router.delete(
 	isAdmin,
 	remove,
 );
+
+router.post("/reservation-create-data-entry", createReservationDataEntry);
 
 router.param("userId", userById);
 router.param("reservationId", reservationById);

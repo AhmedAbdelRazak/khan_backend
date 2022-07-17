@@ -844,3 +844,17 @@ exports.remove = (req, res) => {
 		res.json({ message: "Order deleted" });
 	});
 };
+
+exports.createReservationDataEntry = (req, res) => {
+	const order = new Reservation(req.body);
+
+	order.save((err, data) => {
+		if (err) {
+			return res.status(400).json({
+				error: console.log(err, "error while creating order"),
+			});
+		}
+
+		res.json({ data });
+	});
+};
