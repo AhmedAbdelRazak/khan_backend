@@ -456,137 +456,140 @@ exports.updateOrderStatus = (req, res) => {
 
 			console.log(req.order, "order");
 
-			const emailData3 = {
-				to: req.order.scheduledByUserEmail,
-				from: "noreply@infinite-apps.com",
-				subject: `Khan Khadija | Reservation Update`,
-				html: `	<html lang="en">
-							<head>
-								<meta charset="UTF-8" />
-								<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-								<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-						
-								<link
-									rel="stylesheet"
-									href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-									integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-									crossorigin="anonymous"
-								/>
-						
-								<title></title>
-							</head>
-							<style>
-							body {
-								background-color: #1e467d;
-								color: white;
-								margin: 10px;
-								justify-content: center;
-								font-weight: bold;
-								padding: 10px;
-								border-radius: 3px;
-				
-							}
-					
-							h5 {
-								font-weight: bold;
-								font-size: 1.2rem;
-							}
-					
-							.mainDiv {
-								padding: 20px;
-							}
-					
-							a {
-								color: #fcb63e;
-							}
-					
-							.logoWrapper {
-								/* border: 1px red solid; */
-								background-color: #fcb63e;
-								border-radius: 10px;
-								margin: auto 10px;
-							}
-					
-							.bookingInfoWrapper {
-								background-color: antiquewhite;
-								padding: 30px;
-								color: black;
-								border-radius: 15px;
-								margin: 10px auto;
-							}
-
-							.theStatusText {
-								color: #fcb63e;
-							}
-					
-							h4 {
-								color: #1e467d !important;
-								font-weight: bolder;
-							}
-					
-							@media (max-width: 1000px) {
+			if (order.scheduledByUserEmail.includes("@")) {
+				const emailData3 = {
+					to: req.order.scheduledByUserEmail,
+					from: "noreply@infinite-apps.com",
+					subject: `Khan Khadija | Reservation Update`,
+					html: `	<html lang="en">
+								<head>
+									<meta charset="UTF-8" />
+									<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+									<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+							
+									<link
+										rel="stylesheet"
+										href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+										integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+										crossorigin="anonymous"
+									/>
+							
+									<title></title>
+								</head>
+								<style>
 								body {
 									background-color: #1e467d;
 									color: white;
-									margin: 4px;
-									padding: 7px;
-								}
-								.imgStyling {
-									height: 100px !important;
-									width: 300px !important;
-								}
+									margin: 10px;
+									justify-content: center;
+									font-weight: bold;
+									padding: 10px;
+									border-radius: 3px;
 					
-								.bookingInfoWrapper {
+								}
+						
+								h5 {
+									font-weight: bold;
+									font-size: 1.2rem;
+								}
+						
+								.mainDiv {
 									padding: 20px;
 								}
-							}
-						</style>
-							<body>
-								<div class="col-md-5 mx-auto mainDiv">
-									<div class="mx-auto text-center logoWrapper mb-3">
-										<img
-											src="https://res.cloudinary.com/infiniteapps/image/upload/v1652480319/khankhadija/LogoSideBar_YusufSidebar_gfw40c.png"
-											alt="${BusinessName}"
-											class="imgStyling"
-											style="height: 40%; width: 40%"
-										/>
+						
+								a {
+									color: #fcb63e;
+								}
+						
+								.logoWrapper {
+									/* border: 1px red solid; */
+									background-color: #fcb63e;
+									border-radius: 10px;
+									margin: auto 10px;
+								}
+						
+								.bookingInfoWrapper {
+									background-color: antiquewhite;
+									padding: 30px;
+									color: black;
+									border-radius: 15px;
+									margin: 10px auto;
+								}
+	
+								.theStatusText {
+									color: #fcb63e;
+								}
+						
+								h4 {
+									color: #1e467d !important;
+									font-weight: bolder;
+								}
+						
+								@media (max-width: 1000px) {
+									body {
+										background-color: #1e467d;
+										color: white;
+										margin: 4px;
+										padding: 7px;
+									}
+									.imgStyling {
+										height: 100px !important;
+										width: 300px !important;
+									}
+						
+									.bookingInfoWrapper {
+										padding: 20px;
+									}
+								}
+							</style>
+								<body>
+									<div class="col-md-5 mx-auto mainDiv">
+										<div class="mx-auto text-center logoWrapper mb-3">
+											<img
+												src="https://res.cloudinary.com/infiniteapps/image/upload/v1652480319/khankhadija/LogoSideBar_YusufSidebar_gfw40c.png"
+												alt="${BusinessName}"
+												class="imgStyling"
+												style="height: 40%; width: 40%"
+											/>
+										</div>
+							
+										<h5 style="position: relative">Hi ${req.order.fullName}</h5>
+										<br />
+										<p>There is an update to your reservation.</p>
+										<br />
+										<div class='bookingInfoWrapper'>
+											  <h4>Reservation status: <span class='theStatusText'>${req.body.status}</span> </h4>
+											  </div>
+											  <br />
+								
+											  Once we have another update, we will let you know.
+											  <br />
+								
+											  <h4> <div>Thank you for choosing <a href=${BusinessWebsite}> ${BusinessName}</a>.</div></h4>
+										<br />
+										<br />
+										Kind and Best Regards, <br />
+										${BusinessName} support team <br />
+										Contact Email: ${defaultEmail} <br />
+										Phone#: ${phoneNumber3} <br />
+										Address: ${shopAddress} <br />
+										&nbsp;&nbsp;
+							
+										<br />
+										<p>
+											<strong>${BusinessName}</strong>
+										</p>
 									</div>
-						
-									<h5 style="position: relative">Hi ${req.order.fullName}</h5>
-									<br />
-									<p>There is an update to your reservation.</p>
-									<br />
-									<div class='bookingInfoWrapper'>
-										  <h4>Reservation status: <span class='theStatusText'>${req.body.status}</span> </h4>
-										  </div>
-										  <br />
-							
-										  Once we have another update, we will let you know.
-										  <br />
-							
-										  <h4> <div>Thank you for choosing <a href=${BusinessWebsite}> ${BusinessName}</a>.</div></h4>
-									<br />
-									<br />
-									Kind and Best Regards, <br />
-									${BusinessName} support team <br />
-									Contact Email: ${defaultEmail} <br />
-									Phone#: ${phoneNumber3} <br />
-									Address: ${shopAddress} <br />
-									&nbsp;&nbsp;
-						
-									<br />
-									<p>
-										<strong>${BusinessName}</strong>
-									</p>
-								</div>
-							</body>
-						</html>
-				
+								</body>
+							</html>
+					
+	
+			`,
+				};
 
-        `,
-			};
+				sgMail.send(emailData3);
+			}
 
-			sgMail.send(emailData3);
 			res.json(order);
 		},
 	);
@@ -645,6 +648,7 @@ exports.updateReservation = (req, res) => {
 	order.option2Count = req.body.option2Count;
 	order.option3Count = req.body.option3Count;
 	order.option4Count = req.body.option4Count;
+	order.option4Count = req.body.option4Count;
 
 	order.save((err, data) => {
 		if (err) {
@@ -674,159 +678,164 @@ exports.updateReservation = (req, res) => {
 			)
 			.catch((err) => console.log(err));
 
-		const FormSubmittionEmail = {
-			to: order.scheduledByUserEmail,
-			from: fromEmail,
-			subject: `${BusinessName} - Reservation Update`,
-			html: `
-				<html lang="en">
-				<head>
-					<meta charset="UTF-8" />
-					<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-					<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-			
-					<link
-						rel="stylesheet"
-						href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-						integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-						crossorigin="anonymous"
-					/>
-			
-					<title></title>
-				</head>
-				<style>
-				body {
-					background-color: #1e467d;
-					color: white;
-					margin: 10px;
-					justify-content: center;
-					font-weight: bold;
-					padding: 10px;
-					border-radius: 3px;
-	
-				}
-		
-				h5 {
-					font-weight: bold;
-					font-size: 1.2rem;
-				}
-		
-				.mainDiv {
-					padding: 20px;
-				}
-		
-				a {
-					color: #fcb63e;
-				}
-		
-				.logoWrapper {
-					/* border: 1px red solid; */
-					background-color: #fcb63e;
-					border-radius: 10px;
-					margin: auto 10px;
-				}
-		
-				.bookingInfoWrapper {
-					background-color: antiquewhite;
-					padding: 30px;
-					color: black;
-					border-radius: 15px;
-					margin: 10px auto;
-				}
-		
-				h4 {
-					color: #1e467d !important;
-					font-weight: bolder;
-				}
-		
-				@media (max-width: 1000px) {
-					body {
-						background-color: #1e467d;
-						color: white;
-						margin: 4px;
-						padding: 7px;
-					}
-					.imgStyling {
-						height: 100px !important;
-						width: 300px !important;
-					}
-		
-					.bookingInfoWrapper {
-						padding: 20px;
-					}
-				}
-			</style>
-				<body>
-					<div class="col-md-5 mx-auto mainDiv">
-						<div class="mx-auto text-center logoWrapper mb-3">
-							<img
-								src="https://res.cloudinary.com/infiniteapps/image/upload/v1652480319/khankhadija/LogoSideBar_YusufSidebar_gfw40c.png"
-								alt="${BusinessName}"
-								class="imgStyling"
-								style="height: 40%; width: 40%"
+		if (order.scheduledByUserEmail.includes("@")) {
+			const FormSubmittionEmail = {
+				to: order.scheduledByUserEmail,
+				from: fromEmail,
+				subject: `${BusinessName} - Reservation Update`,
+				html: `
+						<html lang="en">
+						<head>
+							<meta charset="UTF-8" />
+							<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+							<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+					
+							<link
+								rel="stylesheet"
+								href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+								integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+								crossorigin="anonymous"
 							/>
-						</div>
+					
+							<title></title>
+						</head>
+						<style>
+						body {
+							background-color: #1e467d;
+							color: white;
+							margin: 10px;
+							justify-content: center;
+							font-weight: bold;
+							padding: 10px;
+							border-radius: 3px;
 			
-						<h5 style="position: relative">Hi ${req.body.fullName}</h5>
-						<div class="mb-2">
-							Thank you for choosing
-							<a href="${BusinessWebsite}"> ${BusinessName}</a>.
-						</div>
-						If you would like to change your ticket info, Please call ${phoneNumber3}
-						and our support team will help you.
-						<br />
-						<div class="bookingInfoWrapper">
-							<h4>Your Booking Info:</h4>
-							Phone: ${req.body.phoneNumber}
-							<br />
-							Scheduled Date: ${
-								new Date(req.body.scheduledDate).toLocaleString() !==
-								"Invalid Date"
-									? new Date(req.body.scheduledDate).toLocaleString("en-US", {
-											timeZone: "Africa/Cairo",
-									  })
-									: req.body.scheduledDate
+						}
+				
+						h5 {
+							font-weight: bold;
+							font-size: 1.2rem;
+						}
+				
+						.mainDiv {
+							padding: 20px;
+						}
+				
+						a {
+							color: #fcb63e;
+						}
+				
+						.logoWrapper {
+							/* border: 1px red solid; */
+							background-color: #fcb63e;
+							border-radius: 10px;
+							margin: auto 10px;
+						}
+				
+						.bookingInfoWrapper {
+							background-color: antiquewhite;
+							padding: 30px;
+							color: black;
+							border-radius: 15px;
+							margin: 10px auto;
+						}
+				
+						h4 {
+							color: #1e467d !important;
+							font-weight: bolder;
+						}
+				
+						@media (max-width: 1000px) {
+							body {
+								background-color: #1e467d;
+								color: white;
+								margin: 4px;
+								padding: 7px;
 							}
-
-							<br />
-							Tickets Count (Adults): ${req.body.quantity}
-							<br />
-							Tickets Count (Children): ${req.body.quantity_Children}
-							<br />
-							Bus Station Address: ${req.body.chosenBusStation.address}
-							<br />
-							Bus Station Time: ${req.body.chosenBusStationTime}
-							<br />
-							Chosen Package/Ticket: ${req.body.chosenService_Package}
-							<br />
-							Options Added: ${
-								Number(req.body.option1Count) +
-								Number(req.body.option2Count) +
-								Number(req.body.option3Count) +
-								Number(req.body.option4Count)
+							.imgStyling {
+								height: 100px !important;
+								width: 300px !important;
 							}
-							<br />
-							Total Amount: ${req.body.totalAmount} L.E
-							<br />
-						</div>
-						<br />
-						Kind and Best Regards, <br />
-						${BusinessName} support team <br />
-						Contact Email: ${defaultEmail} <br />
-						Phone#: ${phoneNumber3} <br />
-						Address: ${shopAddress} <br />
-						&nbsp;&nbsp;
-			
-						<br />
-						<p>
-							<strong>${BusinessName}</strong>
-						</p>
-					</div>
-				</body>
-			</html>
-			`,
-		};
-		sgMail.send(FormSubmittionEmail);
+				
+							.bookingInfoWrapper {
+								padding: 20px;
+							}
+						}
+					</style>
+						<body>
+							<div class="col-md-5 mx-auto mainDiv">
+								<div class="mx-auto text-center logoWrapper mb-3">
+									<img
+										src="https://res.cloudinary.com/infiniteapps/image/upload/v1652480319/khankhadija/LogoSideBar_YusufSidebar_gfw40c.png"
+										alt="${BusinessName}"
+										class="imgStyling"
+										style="height: 40%; width: 40%"
+									/>
+								</div>
+					
+								<h5 style="position: relative">Hi ${req.body.fullName}</h5>
+								<div class="mb-2">
+									Thank you for choosing
+									<a href="${BusinessWebsite}"> ${BusinessName}</a>.
+								</div>
+								If you would like to change your ticket info, Please call ${phoneNumber3}
+								and our support team will help you.
+								<br />
+								<div class="bookingInfoWrapper">
+									<h4>Your Booking Info:</h4>
+									Phone: ${req.body.phoneNumber}
+									<br />
+									Scheduled Date: ${
+										new Date(req.body.scheduledDate).toLocaleString() !==
+										"Invalid Date"
+											? new Date(req.body.scheduledDate).toLocaleString(
+													"en-US",
+													{
+														timeZone: "Africa/Cairo",
+													},
+											  )
+											: req.body.scheduledDate
+									}
+		
+									<br />
+									Tickets Count (Adults): ${req.body.quantity}
+									<br />
+									Tickets Count (Children): ${req.body.quantity_Children}
+									<br />
+									Bus Station Address: ${req.body.chosenBusStation.address}
+									<br />
+									Bus Station Time: ${req.body.chosenBusStationTime}
+									<br />
+									Chosen Package/Ticket: ${req.body.chosenService_Package}
+									<br />
+									Options Added: ${
+										Number(req.body.option1Count) +
+										Number(req.body.option2Count) +
+										Number(req.body.option3Count) +
+										Number(req.body.option4Count)
+									}
+									<br />
+									Total Amount: ${req.body.totalAmount} L.E
+									<br />
+								</div>
+								<br />
+								Kind and Best Regards, <br />
+								${BusinessName} support team <br />
+								Contact Email: ${defaultEmail} <br />
+								Phone#: ${phoneNumber3} <br />
+								Address: ${shopAddress} <br />
+								&nbsp;&nbsp;
+					
+								<br />
+								<p>
+									<strong>${BusinessName}</strong>
+								</p>
+							</div>
+						</body>
+					</html>
+					`,
+			};
+			sgMail.send(FormSubmittionEmail);
+		}
 
 		res.json(data);
 	});
