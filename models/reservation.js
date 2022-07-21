@@ -54,6 +54,11 @@ const reservationSchema = new mongoose.Schema(
 			trim: true,
 			default: "Not Added",
 		},
+		reservationBelongsTo: {
+			type: String,
+			trim: true,
+			default: "Semi Colon and Infinite-Apps",
+		},
 
 		scheduledByUserEmail: {
 			type: String,

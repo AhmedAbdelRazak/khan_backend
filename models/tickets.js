@@ -250,6 +250,31 @@ const ticketsSchema = new mongoose.Schema(
 			default: true,
 		},
 
+		breakfast: {
+			type: Boolean,
+			default: false,
+		},
+
+		lunch: {
+			type: Boolean,
+			default: false,
+		},
+
+		horses: {
+			type: Boolean,
+			default: false,
+		},
+
+		pool: {
+			type: Boolean,
+			default: false,
+		},
+
+		boat: {
+			type: Boolean,
+			default: false,
+		},
+
 		thumbnail: {
 			type: Array,
 		},

@@ -80,6 +80,12 @@ exports.update = (req, res) => {
 	ticket.displayBusStationOption = req.body.displayBusStationOption;
 	ticket.displayOcassion = req.body.displayOcassion;
 
+	ticket.breakfast = req.body.breakfast;
+	ticket.lunch = req.body.lunch;
+	ticket.horses = req.body.horses;
+	ticket.pool = req.body.pool;
+	ticket.boat = req.body.boat;
+
 	ticket.activeService = req.body.activeService;
 	ticket.thumbnail = req.body.thumbnail;
 	ticket.save((err, data) => {

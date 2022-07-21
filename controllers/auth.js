@@ -163,6 +163,16 @@ exports.isEmployee = (req, res, next) => {
 	next();
 };
 
+exports.isOwner = (req, res, next) => {
+	if (req.profile.role !== 3) {
+		return res.status(403).json({
+			error: "Owner resource! access denied",
+		});
+	}
+
+	next();
+};
+
 exports.isInStore = (req, res, next) => {
 	if (req.profile.role !== 3) {
 		return res.status(403).json({
