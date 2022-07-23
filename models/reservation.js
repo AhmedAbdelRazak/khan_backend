@@ -112,6 +112,11 @@ const reservationSchema = new mongoose.Schema(
 			default: "Online",
 		},
 
+		busSeatsCount: {
+			type: Number,
+			default: 0,
+		},
+
 		option1Count: {
 			type: Number,
 			default: 0,

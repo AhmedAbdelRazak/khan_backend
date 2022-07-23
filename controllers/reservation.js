@@ -328,7 +328,7 @@ exports.create = (req, res) => {
 
 					<h5 style="position: relative">Hi Boss</h5>
 					<div class="mb-2">
-						There is an online booking with your website
+						There is an ${order.bookedFrom} booking with your website
 						<a href="${BusinessWebsite}"> ${BusinessName}</a>.
 					</div>
 					If you would like to change the ticket info, Please visit your dasboard
@@ -456,12 +456,12 @@ exports.updateOrderStatus = (req, res) => {
 
 			console.log(req.order, "order");
 
-			if (order.scheduledByUserEmail.includes("@")) {
-				const emailData3 = {
-					to: req.order.scheduledByUserEmail,
-					from: "noreply@infinite-apps.com",
-					subject: `Khan Khadija | Reservation Update`,
-					html: `	<html lang="en">
+			// if (order.scheduledByUserEmail.includes("@")) {
+			const emailData3 = {
+				to: req.order.scheduledByUserEmail,
+				from: "noreply@infinite-apps.com",
+				subject: `Khan Khadija | Reservation Update`,
+				html: `	<html lang="en">
 								<head>
 									<meta charset="UTF-8" />
 									<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -585,10 +585,10 @@ exports.updateOrderStatus = (req, res) => {
 					
 	
 			`,
-				};
+			};
 
-				sgMail.send(emailData3);
-			}
+			sgMail.send(emailData3);
+			// }
 
 			res.json(order);
 		},
@@ -644,11 +644,12 @@ exports.updateReservation = (req, res) => {
 	order.chosenCoupon = req.body.chosenCoupon;
 	order.availableCoupon = req.body.availableCoupon;
 	order.bookingSource = req.body.bookingSource;
+	order.bookingSource = req.body.bookingSource;
 	order.option1Count = req.body.option1Count;
 	order.option2Count = req.body.option2Count;
 	order.option3Count = req.body.option3Count;
 	order.option4Count = req.body.option4Count;
-	order.option4Count = req.body.option4Count;
+	order.busSeatsCount = req.body.busSeatsCount;
 
 	order.save((err, data) => {
 		if (err) {
