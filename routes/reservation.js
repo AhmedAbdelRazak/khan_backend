@@ -9,6 +9,8 @@ const {
 	isAdmin,
 	isEmployee,
 	isOwner,
+	isBusStation,
+	isKitchen,
 } = require("../controllers/auth");
 
 const {
@@ -40,6 +42,22 @@ router.get(
 	requireSignin,
 	isAuth,
 	isOwner,
+	list,
+);
+
+router.get(
+	"/all-reservations-bus/:userId",
+	requireSignin,
+	isAuth,
+	isBusStation,
+	list,
+);
+
+router.get(
+	"/all-reservations-kitchen/:userId",
+	requireSignin,
+	isAuth,
+	isKitchen,
 	list,
 );
 

@@ -41,9 +41,25 @@ exports.create = (req, res) => {
 	// console.log(order);
 	console.log(`+${order.phoneNumber}`, "phone");
 	// console.log(`${order._id}`, "Id");
+	// const smsData = {
+	// 	phone: `+${order.phoneNumber}`,
+	// 	text: `Hi ${order.fullName} - \nYour Ticket was successfully booked \n Please call ${phoneNumber3} if you would like to change anything.\n Thank you for choosing ${BusinessName}`,
+	// };
+
 	const smsData = {
 		phone: `+${order.phoneNumber}`,
-		text: `Hi ${order.fullName} - \nYour Ticket was successfully booked \n Please call ${phoneNumber3} if you would like to change anything.\n Thank you for choosing ${BusinessName}`,
+		text: `مرحبا -
+		\nتم حجز تذكرتك بنجاح
+		\nيرجى الاتصال على
+	   ( 01221755440-01208560444-034770362
+		\n(+201211492941) 
+		\nإذا كنت ترغب في تغيير أي شيء .
+	   
+	   \nسيتم التواصل مع حضرتكم من قبل مشرفين الباص اذا كنت حاجز مقعد في الباص الخاص بنا 
+	   \n(01279600520)
+	   \n (01210028296)
+	   
+	   شكرا لاختيارك خدمة عملاء خان خديجة منتجع خان خديجة ؛~`,
 	};
 
 	order.save((err, data) => {
@@ -65,6 +81,7 @@ exports.create = (req, res) => {
 
 		orderStatusSMS.messages
 			.create({
+				locale: "ar",
 				body: smsData.text,
 				from: "+19094884148",
 				to: smsData.phone,
