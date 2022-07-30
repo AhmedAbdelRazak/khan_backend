@@ -634,10 +634,10 @@ exports.updateReservation = (req, res) => {
 	// console.log(req.body.scheduledByUserEmail, "req.body");
 	// console.log(req.order, "req.order");
 
-	const smsData = {
-		phone: `+${req.body.phoneNumber}`,
-		text: `Hi ${req.body.fullName} - \nYour Ticket was updated \n Please call ${phoneNumber3} or check your email (${req.body.scheduledByUserEmail}) to confirm.\n Thank you for choosing ${BusinessName}`,
-	};
+	// const smsData = {
+	// 	phone: `+${req.body.phoneNumber}`,
+	// 	text: `Hi ${req.body.fullName} - \nYour Ticket was updated \n Please call ${phoneNumber3} or check your email (${req.body.scheduledByUserEmail}) to confirm.\n Thank you for choosing ${BusinessName}`,
+	// };
 
 	order.scheduledByUserEmail = req.body.scheduledByUserEmail;
 	order.totalAmount = req.body.totalAmount;
@@ -672,27 +672,27 @@ exports.updateReservation = (req, res) => {
 				error: err,
 			});
 		}
-		const sms = new SMS(smsData);
-		sms.save((err, data) => {
-			if (err) {
-				console.log(err, "from creating SMSData");
-				return res.status(400).json({
-					err: "Error in sms creation",
-				});
-			}
-			console.log(data, "sms saved in the data base");
-		});
+		// const sms = new SMS(smsData);
+		// sms.save((err, data) => {
+		// 	if (err) {
+		// 		console.log(err, "from creating SMSData");
+		// 		return res.status(400).json({
+		// 			err: "Error in sms creation",
+		// 		});
+		// 	}
+		// 	console.log(data, "sms saved in the data base");
+		// });
 
-		orderStatusSMS.messages
-			.create({
-				body: smsData.text,
-				from: "+19094884148",
-				to: smsData.phone,
-			})
-			.then((message) =>
-				console.log(`Your message was successfully sent to ${smsData.phone}`),
-			)
-			.catch((err) => console.log(err));
+		// orderStatusSMS.messages
+		// 	.create({
+		// 		body: smsData.text,
+		// 		from: "+19094884148",
+		// 		to: smsData.phone,
+		// 	})
+		// 	.then((message) =>
+		// 		console.log(`Your message was successfully sent to ${smsData.phone}`),
+		// 	)
+		// 	.catch((err) => console.log(err));
 
 		if (order.scheduledByUserEmail.includes("@")) {
 			const FormSubmittionEmail = {
