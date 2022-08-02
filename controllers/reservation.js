@@ -66,28 +66,29 @@ exports.create = (req, res) => {
 				error: console.log(err, "error while creating order"),
 			});
 		}
-		const sms = new SMS(smsData);
-		sms.save((err, data) => {
-			if (err) {
-				console.log(err, "from creating SMSData");
-				return res.status(400).json({
-					err: "Error in sms creation",
-				});
-			}
-			console.log(data, "sms saved in the data base");
-		});
 
-		orderStatusSMS.messages
-			.create({
-				locale: "ar",
-				body: smsData.text,
-				from: "+19094884148",
-				to: smsData.phone,
-			})
-			.then((message) =>
-				console.log(`Your message was successfully sent to ${smsData.phone}`),
-			)
-			.catch((err) => console.log(err));
+		// const sms = new SMS(smsData);
+		// sms.save((err, data) => {
+		// 	if (err) {
+		// 		console.log(err, "from creating SMSData");
+		// 		return res.status(400).json({
+		// 			err: "Error in sms creation",
+		// 		});
+		// 	}
+		// 	console.log(data, "sms saved in the data base");
+		// });
+
+		// orderStatusSMS.messages
+		// 	.create({
+		// 		locale: "ar",
+		// 		body: smsData.text,
+		// 		from: "+19094884148",
+		// 		to: smsData.phone,
+		// 	})
+		// 	.then((message) =>
+		// 		console.log(`Your message was successfully sent to ${smsData.phone}`),
+		// 	)
+		// 	.catch((err) => console.log(err));
 
 		res.json({ data });
 
