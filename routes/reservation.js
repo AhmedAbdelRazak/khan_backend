@@ -25,6 +25,7 @@ const {
 	updateReservation,
 	remove,
 	createReservationDataEntry,
+	listReservationsDates,
 } = require("../controllers/reservation");
 
 router.post("/reservation-create", create);
@@ -117,6 +118,14 @@ router.delete(
 	isAuth,
 	isAdmin,
 	remove,
+);
+
+router.get(
+	"/reservations/list/dates/:day1/:day2/:userId",
+	requireSignin,
+	isAuth,
+	isAdmin,
+	listReservationsDates,
 );
 
 router.post("/reservation-create-data-entry", createReservationDataEntry);

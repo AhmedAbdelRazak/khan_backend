@@ -422,6 +422,30 @@ exports.list = (req, res) => {
 	});
 };
 
+exports.listReservationsDates = (req, res) => {
+	console.log(new Date(req.params.day1), "req");
+	console.log(new Date(req.params.day2), "req");
+
+	var day1Modified = new Date(req.params.day1).setHours(0, 0, 0, 0);
+	var day2Modified = new Date(req.params.day2).setHours(0, 0, 0, 0);
+
+	Reservation.find({
+		createdAt: {
+			$gte: day2Modified,
+			$lte: day1Modified,
+		},
+	})
+		.sort("-createdAt")
+		.exec((err, data) => {
+			if (err) {
+				return res.status(400).json({
+					error: "Error Listing all data",
+				});
+			}
+			res.json(data);
+		});
+};
+
 exports.listToBook = (req, res) => {
 	Reservation.find()
 		.sort("-created")
